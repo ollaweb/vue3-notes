@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="app">
+            <h1>{{title}}</h1>
+            <form @submit.prevent="onSubmit">
+                <input type="text" required v-model="input.value" :placeholder="input.placeholder">
+                <button type="submit">Add new note</button>
+            </form>
+            <div class="notes">
+                <ul class="note" v-for="(note, index) in notes" :key="index">
+                    <li style="list-style-type: none;"><span @click="remove(index)">&#10005</span> {{note}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
