@@ -7,6 +7,12 @@ const App = {
                 placeholder: "Type your note",
             },
             notes: ["task 1", "task 2", "task 3"],
+            updating: false,
+        }
+    },
+    computed: {
+        updateButton() {
+            return this.updating ? "Ok" : "Update";
         }
     },
     mounted() {
@@ -36,7 +42,18 @@ const App = {
         remove(index) {
             this.notes.splice(index, 1);
             console.log(`note: ${index} has been removed`)
+        },
+        update() {
+            this.updating = !this.updating;
+        },
+        onUpdate(e) {
+            const updatedNoteValue = e.target.value;
+            this.notes[this.index] = updatedNoteValue;
+            console.log(updatedNoteValue);
+            console.log(this.index);
+            console.log(this.notes);
         }
+
     },
 }
 
