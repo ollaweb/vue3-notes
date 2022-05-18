@@ -1,60 +1,66 @@
 const App = {
-    data() {
-        return {
-            title: "Notes",
-            input: {
-                value: "",
-                placeholder: "Type your note",
-            },
-            notes: ["task 1", "task 2", "task 3"],
-            updating: false,
-        }
+  data() {
+    return {
+      title: "Notes",
+      input: {
+        value: "",
+        placeholder: "Type your note",
+      },
+      notes: [
+        { title: "task 1", isUpdating: false },
+        { title: "task 2", isUpdating: false },
+        { title: "task 3", isUpdating: false },
+      ],
+      hello: "Hello",
+    };
+  },
+  mounted() {
+    this.getNotes();
+  },
+  watch: {
+    notes: {
+      handler(updatedList) {
+        localStorage.setItem("notes", JSON.stringify(updatedList));
+      },
+      deep: true,
     },
-    computed: {
-        updateButton() {
-            return this.updating ? "Ok" : "Update";
-        }
+  },
+  computed: {
+    buttonName(note) {
+      note.isUpdating ? "OK" : "Update";
     },
-    mounted() {
-        this.getNotes();
+  },
+  methods: {
+    getNotes() {
+      const localNotes = localStorage.getItem("notes");
+      if (localNotes) {
+        this.notes = JSON.parse(localNotes);
+      }
     },
-    watch: {
-        notes: {
-            handler(updatedList) {
-                localStorage.setItem("notes", JSON.stringify(updatedList))
-            },
-            deep: true,
-        }
+    onSubmit() {
+      if (this.input.value.trim()) {
+        const newNote = {
+          title: this.input.value.trim(),
+          isUpdating: false,
+        };
+        this.notes.push(newNote);
+      }
+      //reset
+      this.input.value = "";
     },
-    methods: {
-        getNotes() {
-            const localNotes = localStorage.getItem("notes");
-            if (localNotes) {
-                this.notes = JSON.parse(localNotes);
-            }
-        },
-        onSubmit() {
-            this.notes.push(this.input.value);
-
-            //reset
-            this.input.value = "";
-        },
-        remove(index) {
-            this.notes.splice(index, 1);
-            console.log(`note: ${index} has been removed`)
-        },
-        update() {
-            this.updating = !this.updating;
-        },
-        onUpdate(e) {
-            const updatedNoteValue = e.target.value;
-            this.notes[this.index] = updatedNoteValue;
-            console.log(updatedNoteValue);
-            console.log(this.index);
-            console.log(this.notes);
-        }
-
+    remove(index) {
+      this.notes.splice(index, 1);
+      console.log(`note: ${index} has been removed`);
     },
-}
+    update(note) {
+      console.log(note.title);
+      note.isUpdating = !note.isUpdating;
+    },
+    updateNote(note, index) {
+      this.notes[index].title = note.title.trim();
+      note.isUpdating = !note.isUpdating;
+    },
+  },
+};
 
 Vue.createApp(App).mount("#app");

@@ -17,15 +17,22 @@
                 <input type="text" required v-model="input.value" :placeholder="input.placeholder">
                 <button type="submit">Add new note</button>
             </form>
-            <ul class="notes" style="padding: 0 0 0 10px;">
-                <li class="note" v-for="(note, index) in notes" :key="index" style="list-style-type: none;">
-                    <span @click="remove(index)">&#10005</span>
-                    <input v-if="updating" v-model="note" @input="onUpdate" type="text"
-                        style="display:inline; margin: 0 10px">
-                    <p v-else style="display:inline; margin: 0 10px">{{note}}</p>
-                    <button @click="update">{{updateButton}}</button>
-                </li>
-            </ul>
+            <div class="notes">
+                <ul class="note" >
+                    <!-- <li style="list-style-type: none;"><span @click="remove(index)">&#10005</span> {{note}}
+                    <button @click="update(note)">Update</button> -->
+                    <li v-for="(note, index) in notes" :key="index" style="list-style-type: none;"><span @click="remove(index)">&#10005</span> 
+                      <form @submit.prevent="updateNote(note, index)" style="display:inline; margin: 0 10px">
+                        
+                        <input v-if="note.isUpdating" v-model="notes[index].title" type="text" style="display:inline; margin: 0 10px">
+                        <p v-else style="display:inline; margin: 0 10px">{{note.title}}</p>
+                        <button v-if="note.isUpdating">Ok</button>
+                        <button @click="update(note)" v-else>Update</button>
+                      </form>
+                      
+                  </li>
+                </ul>
+            </div>
         </div>
     </div>
     <script src="./app.js"></script>
