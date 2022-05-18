@@ -19,8 +19,6 @@
             </form>
             <div class="notes">
                 <ul class="note" >
-                    <!-- <li style="list-style-type: none;"><span @click="remove(index)">&#10005</span> {{note}}
-                    <button @click="update(note)">Update</button> -->
                     <li v-for="(note, index) in notes" :key="index" style="list-style-type: none;"><span @click="remove(index)">&#10005</span> 
                       <form @submit.prevent="updateNote(note, index)" style="display:inline; margin: 0 10px">
                         

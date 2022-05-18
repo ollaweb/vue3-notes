@@ -7,9 +7,9 @@ const App = {
         placeholder: "Type your note",
       },
       notes: [
-        { title: "task 1", isUpdating: false },
-        { title: "task 2", isUpdating: false },
-        { title: "task 3", isUpdating: false },
+        { title: "task 1", isUpdating: false, done: false },
+        { title: "task 2", isUpdating: false, done: false },
+        { title: "task 3", isUpdating: false, done: false },
       ],
       hello: "Hello",
     };
@@ -33,7 +33,7 @@ const App = {
   methods: {
     getNotes() {
       const localNotes = localStorage.getItem("notes");
-      if (localNotes) {
+      if (localNotes && localNotes.length !== 2) {
         this.notes = JSON.parse(localNotes);
       }
     },
@@ -44,7 +44,10 @@ const App = {
           isUpdating: false,
         };
         this.notes.push(newNote);
+      } else {
+        console.log("You can't enter blank note");
       }
+
       //reset
       this.input.value = "";
     },
@@ -57,8 +60,12 @@ const App = {
       note.isUpdating = !note.isUpdating;
     },
     updateNote(note, index) {
-      this.notes[index].title = note.title.trim();
-      note.isUpdating = !note.isUpdating;
+      if (note.title.trim()) {
+        this.notes[index].title = note.title.trim();
+        note.isUpdating = !note.isUpdating;
+      } else {
+        console.log("You can't enter blank note");
+      }
     },
   },
 };
