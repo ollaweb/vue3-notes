@@ -1,17 +1,30 @@
 const App = {
   data() {
     return {
-      title: "Notes",
+      title: "ToDo List",
+      subtitle: "add, edit or delete your tasks",
       input: {
         value: "",
-        placeholder: "Type your note",
+        placeholder: "Type your task",
       },
       notes: [
-        { title: "task 1", isUpdating: false, done: false },
-        { title: "task 2", isUpdating: false, done: false },
-        { title: "task 3", isUpdating: false, done: false },
+        {
+          title: "Example of your note #1",
+          isUpdating: false,
+          isDone: false,
+        },
+        {
+          title: "Example of your note #2",
+          isUpdating: false,
+          isDone: false,
+        },
+        {
+          title: "Example of your note #3",
+          isUpdating: false,
+          isDone: false,
+        },
       ],
-      hello: "Hello",
+      isDoneHidden: false,
     };
   },
   mounted() {
@@ -26,8 +39,25 @@ const App = {
     },
   },
   computed: {
-    buttonName(note) {
-      note.isUpdating ? "OK" : "Update";
+    tasksToDo() {
+      return this.notes.filter((note) => !note.isDone);
+    },
+    doneTasks() {
+      return this.notes.length - this.tasksToDo.length;
+    },
+    hasDoneTasks() {
+      if (this.doneTasks === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    notesFiltered() {
+      if (this.isDoneHidden) {
+        return this.notes.filter((note) => !note.isDone);
+      } else {
+        return this.notes;
+      }
     },
   },
   methods: {
@@ -37,13 +67,15 @@ const App = {
         this.notes = JSON.parse(localNotes);
       }
     },
-    onSubmit() {
+    handleStore() {
       if (this.input.value.trim()) {
         const newNote = {
           title: this.input.value.trim(),
           isUpdating: false,
+          isDone: false,
         };
         this.notes.push(newNote);
+        console.log(this.hasDoneTasks);
       } else {
         console.log("You can't enter blank note");
       }
@@ -51,21 +83,39 @@ const App = {
       //reset
       this.input.value = "";
     },
-    remove(index) {
+    handleDestroy(index) {
       this.notes.splice(index, 1);
-      console.log(`note: ${index} has been removed`);
     },
-    update(note) {
-      console.log(note.title);
+    handleDestroyDone() {
+      this.notes.forEach((item, index, array) => {
+        if (item.isDone) {
+          array.splice(index, 1);
+        }
+        item;
+      });
+    },
+    handleDestroyAll() {
+      this.notes = [];
+    },
+    handleUpdate(note) {
       note.isUpdating = !note.isUpdating;
     },
-    updateNote(note, index) {
+    handleUpdateNote(note, index) {
       if (note.title.trim()) {
         this.notes[index].title = note.title.trim();
         note.isUpdating = !note.isUpdating;
       } else {
         console.log("You can't enter blank note");
       }
+    },
+    handleDone(note) {
+      note.isDone = !note.isDone;
+    },
+    handleHideDone() {
+      this.isDoneHidden = !this.isDoneHidden;
+    },
+    handleShowDone() {
+      this.isDoneHidden = !this.isDoneHidden;
     },
   },
 };
