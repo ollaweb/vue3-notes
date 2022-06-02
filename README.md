@@ -1,5 +1,7 @@
 # SPA - ToDo List (Vue 3)
 
+[Demo to test my project](https://ollaweb.github.io/vue3-notes/)
+
 ## Review
 
 ![Look at this lovely design](https://github.com/ollaweb/vue3-notes/blob/main/ToDo-List.jpg)
@@ -18,6 +20,7 @@ Small, very simple project created by learning Vue 3 [in this course.](https://t
 - adding new tasks;
 - delete tasks in the list;
 - my additions:
+  -- simple design with only css;
   -- editing tasks in the list;
   -- mark tasks in the list as done;
   -- hide done tasks;

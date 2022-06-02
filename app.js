@@ -12,19 +12,24 @@ const App = {
           title: "Example of your note #1",
           isUpdating: false,
           isDone: false,
+          hasError: false,
         },
         {
           title: "Example of your note #2",
           isUpdating: false,
           isDone: false,
+          hasError: false,
         },
         {
           title: "Example of your note #3",
           isUpdating: false,
-          isDone: false,
+          isDone: true,
+          hasError: false,
         },
       ],
       isDoneHidden: false,
+      lastValueOfNote: "",
+      errorMessage: "You can't enter blank note",
     };
   },
   mounted() {
@@ -39,18 +44,11 @@ const App = {
     },
   },
   computed: {
-    tasksToDo() {
-      return this.notes.filter((note) => !note.isDone);
+    amountOfTasksToDo() {
+      return this.notes.filter((note) => !note.isDone).length;
     },
-    doneTasks() {
-      return this.notes.length - this.tasksToDo.length;
-    },
-    hasDoneTasks() {
-      if (this.doneTasks === 0) {
-        return true;
-      } else {
-        return false;
-      }
+    amountOfDoneTasks() {
+      return this.notes.length - this.amountOfTasksToDo;
     },
     notesFiltered() {
       if (this.isDoneHidden) {
@@ -73,11 +71,9 @@ const App = {
           title: this.input.value.trim(),
           isUpdating: false,
           isDone: false,
+          hasError: false,
         };
         this.notes.push(newNote);
-        console.log(this.hasDoneTasks);
-      } else {
-        console.log("You can't enter blank note");
       }
 
       //reset
@@ -87,25 +83,31 @@ const App = {
       this.notes.splice(index, 1);
     },
     handleDestroyDone() {
-      this.notes.forEach((item, index, array) => {
-        if (item.isDone) {
-          array.splice(index, 1);
-        }
-        item;
-      });
+      const notesToDo = this.notes.filter((note) => !note.isDone);
+      this.notes = notesToDo;
     },
     handleDestroyAll() {
       this.notes = [];
     },
     handleUpdate(note) {
       note.isUpdating = !note.isUpdating;
+      this.lastValueOfNote = note.title;
+    },
+    showError(message) {
+      this.errorMessage = message;
     },
     handleUpdateNote(note, index) {
       if (note.title.trim()) {
         this.notes[index].title = note.title.trim();
         note.isUpdating = !note.isUpdating;
+        this.lastValueOfNote = "";
       } else {
-        console.log("You can't enter blank note");
+        this.notes[index].title = this.lastValueOfNote;
+        note.isUpdating = !note.isUpdating;
+        note.hasError = !note.hasError;
+        setTimeout(() => {
+          note.hasError = !note.hasError;
+        }, 2000);
       }
     },
     handleDone(note) {
