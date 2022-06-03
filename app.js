@@ -96,6 +96,9 @@ const App = {
       if (note.isDone) return;
       note.isUpdating = !note.isUpdating;
       this.lastValueOfNote = note.title;
+      setTimeout(() => {
+        document.querySelector(".input").focus();
+      }, 200);
     },
     showError(message) {
       this.errorMessage = message;

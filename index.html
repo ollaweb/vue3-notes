@@ -31,8 +31,8 @@
               <li v-for="(note, index) in notesFiltered" :key="index" class="notes__item">
                 <p v-show="note.hasError" class="error">{{errorMessage}}</p>
                 <form @submit.prevent="handleUpdateNote(note, index)" class="form" :class="{done:note.isDone}">
-                  <input v-if="note.isUpdating" v-model="notes[index].title" type="text" class="input">
-                  <div v-else  class="notes__task" :class="{done:note.isDone}">
+                  <input v-if="note.isUpdating" @blur="handleUpdateNote(note, index)"  v-model="notes[index].title" type="text" class="input" autofocus>
+                  <div v-else class="notes__task" :class="{done:note.isDone}">
                     <span @click="handleDone(note)" class="checkbox"></span>
                     <p  @click="handleUpdate(note)" class="notes__text" :class="{done:note.isDone}">{{note.title}}</p>
                   </div>
