@@ -85,7 +85,9 @@ const App = {
     handleDestroyDone() {
       const notesToDo = this.notes.filter((note) => !note.isDone);
       this.notes = notesToDo;
-      this.isDoneHidden = !this.isDoneHidden;
+      if (this.isDoneHidden === true) {
+        this.isDoneHidden = !this.isDoneHidden;
+      }
     },
     handleDestroyAll() {
       this.notes = [];

@@ -75,10 +75,10 @@ main {
   color: #A9A1A5;
 }
 .input_add:focus{
-  outline: 1px solid #A96D8E;
+  outline: none;
 }
 .input:focus{
-  outline: 1px solid #A96D8E;
+  outline: none;
 }
 .btn {
   font-family: Montserrat;
