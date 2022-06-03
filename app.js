@@ -90,6 +90,7 @@ const App = {
       this.notes = [];
     },
     handleUpdate(note) {
+      if (note.isDone) return;
       note.isUpdating = !note.isUpdating;
       this.lastValueOfNote = note.title;
     },

@@ -22,24 +22,24 @@
           <h2 class="subtitle">{{subtitle}}</h2>
         </header>
         <main>
-          <form @submit.prevent="handleStore">
-            <input type="text" required v-model="input.value" :placeholder="input.placeholder">
+          <form @submit.prevent="handleStore" class="form_add">
+            <input type="text" required v-model="input.value" :placeholder="input.placeholder" class="input_add">
             <button class="btn btn-primary" type="submit">Add new task</button>
           </form>
           <div class="notes">
             <ul class="notes__list" >
               <li v-for="(note, index) in notesFiltered" :key="index" class="notes__item">
                 <p v-show="note.hasError" class="error">{{errorMessage}}</p>
-                <form @submit.prevent="handleUpdateNote(note, index)" >
-                  <input v-if="note.isUpdating" v-model="notes[index].title" type="text" >
-                  <div v-else @click="handleDone(note)" class="notes__task" :class="{done:note.isDone}">
-                    <p v-if="note.isDone" class="notes__done">done</p>
-                    <p class="notes__text" :class="{done:note.isDone}">{{note.title}}</p>
+                <form @submit.prevent="handleUpdateNote(note, index)" class="form" :class="{done:note.isDone}">
+                  <input v-if="note.isUpdating" v-model="notes[index].title" type="text" class="input">
+                  <div v-else  class="notes__task" :class="{done:note.isDone}">
+                    <span @click="handleDone(note)" class="checkbox"></span>
+                    <p  @click="handleUpdate(note)" class="notes__text" :class="{done:note.isDone}">{{note.title}}</p>
                   </div>
                   <div class="notes__buttons">
-                    <button v-if="note.isUpdating" type="submit" class="btn btn-light">Ok</button>
-                    <button v-else @click="handleUpdate(note)" class="btn btn-light" v-if="!note.isDone">Edit</button>
-                    <button @click="handleDestroy(index)" type="button" class="btn btn-secondary">Delete</button>
+                    <button v-if="note.isUpdating" type="submit" class="btn btn-round btn-light">Ok</button>
+                    <button v-else @click="handleUpdate(note)" class="btn btn-round btn-light" v-if="!note.isDone"><img src="./edit.svg" alt="pen"></button>
+                    <button @click="handleDestroy(index)" type="button" class="btn btn-round btn-secondary"><img src="./delete.svg" alt="bin"></button>
                   </div>
                 </form>
               </li>
@@ -48,7 +48,7 @@
           <div class="info">
             <div>
               <p class="info__statistics">Tasks to do: {{amountOfTasksToDo}}</p>
-              <button v-if="isDoneHidden" @click="handleShowDone" class="btn btn_small btn-primary-light" >Show done tasks</button>
+              <button v-if="isDoneHidden && amountOfDoneTasks !== 0" @click="handleShowDone" class="btn btn_small btn-primary-light" >Show done tasks</button>
               <button v-else @click="handleHideDone" class="btn btn_small btn-primary-light" :disabled="!amountOfDoneTasks">Hide done tasks</button>
             </div>
             <div>
