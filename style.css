@@ -27,7 +27,7 @@ main {
   text-align: center;
 }
 
-.title{ 
+.title {
   margin: 66px 0 0;
   font-weight: 600;
   font-size: 36px;
@@ -40,7 +40,6 @@ main {
   line-height: 24px;
   color: #CEA4B6;
 }
-
 .form_add {
   display: flex;
   justify-content: space-between;
@@ -90,15 +89,13 @@ main {
   border: none;
   cursor: pointer;
 }
-.btn:disabled{
+.btn:disabled {
   background-color: #D3CBD0;
   cursor: not-allowed;
 }
-
-.btn_small{
+.btn_small {
   padding: 6px 8px;
 }
-
 .btn-primary {
   font-size: 24px;
   line-height: 29px;
@@ -143,11 +140,9 @@ main {
   margin: 50px 0;
   padding: 0;
 }
-
 .notes__list>:not(:last-child) {
   margin-bottom: 20px;
 }
-
 .notes__item {
   position:relative;
   list-style-type: none;
@@ -167,18 +162,8 @@ main {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
-.notes__task.done{
+.notes__task.done {
   background-color: #B58AA2;
-}
-.notes__done{
-  margin: 0;
-  position: absolute;
-  width: auto;
-  width: 24px;
-  height: 24px;
-  opacity: 0;
-  z-index: -1;
-  
 }
 .notes__text{
   margin-left: 34px;
@@ -212,14 +197,11 @@ main {
   background-color:  #DEBBCE;
   border-radius:100%;
 }
-/* .notes__text{
-  margin-left: 34px;
-} */
-.notes__text.done{
+.notes__text.done {
   text-decoration-line: line-through;
   color: #DEBBCE;
 }
-.notes__buttons{
+.notes__buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -230,11 +212,9 @@ main {
   width: 100%;
   max-width: 521px;
 }
-
 .info>div>:last-child{
 margin-top: 12px;
 }
-
 .info__statistics{
   font-size: 20px;
   line-height: 24px;
@@ -283,9 +263,6 @@ margin-top: 12px;
   .notes__task{
     flex: 0 0 78%;
   }
-  .notes__buttons {
-    /* flex: 0 1 42%; */
-  }
 }
 
 
@@ -314,7 +291,7 @@ margin-top: 12px;
   }
   .input{
     margin-right: 10px;
-    padding: 9px 10px;
+    padding: 0px 10px;
     width: 100%;
     font-size: 16px;
     line-height: 20px;
@@ -326,12 +303,12 @@ margin-top: 12px;
   .info {
     flex-direction: column;
   }
-  .btn{
+  .btn {
     padding: 6px 8px;
     font-size: 18px;
     line-height: 22px;
   }
-  .btn-primary{
+  .btn-primary {
     margin-top: 15px;
     padding: 10px 24px;
     width: 100%;
@@ -351,15 +328,15 @@ margin-top: 12px;
     height: 20px;
   }
   .notes__task.done {
-    background-color: unset; 
+    background-color: unset;
   }
-  .notes__task.done .checkbox::after{
+  .notes__task.done .checkbox::after {
     top: -6px;
     left: 6px;
     width: 10px;
     height: 10px;
   }
-  .notes__item{
+  .notes__item {
     position: relative;
   }
   .notes__task {
@@ -377,18 +354,7 @@ margin-top: 12px;
   .notes__text {
     margin-left: 30px;
   }
-  .notes__buttons{
-    /* position: absolute;
-    top: 5px;
-    right: 10px;
-    justify-content: flex-end; */
-  }
-  .notes__done{
-    margin: 0 10px 0 -31px;
-    font-size: 8px;
-    line-height: 10px;
-  }
-  .notes__text{
+  .notes__text {
     font-size: 16px;
     line-height: 20px;
   }
@@ -397,7 +363,7 @@ margin-top: 12px;
     width: 100%;
     max-width: 100%;
   }
-  .info>*:not(:last-child){
+  .info>*:not(:last-child) {
     margin-bottom: 20px;
   }
   .info>div {
@@ -405,10 +371,10 @@ margin-top: 12px;
     align-items: center;
     justify-content: space-between;
   }
-  .info>div>:last-child{
+  .info>div>:last-child {
     margin: 0;
   }
-  .info__statistics{
+  .info__statistics {
     font-size: 18px;
     line-height: 22px;
   }

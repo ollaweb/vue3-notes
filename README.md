@@ -24,10 +24,10 @@ Small, very simple project created by learning Vue 3 [in this course.](https://t
 - adding new tasks;
 - delete tasks in the list;
 - my additions:
-    -- simple design with only css;
-    -- editing tasks in the list;
-    -- mark tasks in the list as done;
-    -- hide done tasks;
-    -- information about all tasks and tasks that are already done;
-    -- delete only done tasks;
-    -- delete all tasks;
+  - simple design with only css;
+  - editing tasks in the list;
+  - mark tasks in the list as done;
+  - hide done tasks;
+  - information about all tasks and tasks that are already done;
+  - delete only done tasks;
+  - delete all tasks;
