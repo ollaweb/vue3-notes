@@ -48,7 +48,7 @@
           <div class="info">
             <div>
               <p class="info__statistics">Tasks to do: {{amountOfTasksToDo}}</p>
-              <button v-if="isDoneHidden && amountOfDoneTasks !== 0" @click="handleShowDone" class="btn btn_small btn-primary-light" >Show done tasks</button>
+              <button v-if="isDoneHidden" @click="handleShowDone" class="btn btn_small btn-primary-light" >Show done tasks</button>
               <button v-else @click="handleHideDone" class="btn btn_small btn-primary-light" :disabled="!amountOfDoneTasks">Hide done tasks</button>
             </div>
             <div>
